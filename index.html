@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Bingo Board</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 20px;
+      background: #f4f4f4;
+    }
+    h1 {
+      color: #333;
+    }
+    #bingo-board {
+      display: grid;
+      grid-template-columns: repeat(5, 60px);
+      grid-gap: 10px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .cell {
+      background: white;
+      border: 2px solid #444;
+      padding: 20px;
+      font-size: 18px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .cell.selected {
+      background: #4caf50;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Bingo Board</h1>
+  <div id="bingo-board"></div>
+
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.expand(); // make the web app full height
+
+    const board = document.getElementById("bingo-board");
+
+    // Generate a 5x5 bingo grid
+    for (let i = 0; i < 25; i++) {
+      const cell = document.createElement("div");
+      cell.className = "cell";
+      cell.innerText = i + 1;
+      cell.onclick = () => cell.classList.toggle("selected");
+      board.appendChild(cell);
+    }
+  </script>
+
+</body>
+</html>
